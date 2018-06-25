@@ -1,10 +1,9 @@
 # Create your views here.
 # https://django-versatileimagefield.readthedocs.io/en/latest/
 
-# dieser view greift zurück auf templates/home.html
-# definiert in ../urls definiert als path(r'', home, name='home'),
+# this view calls templates/home.html
+# is defined in ../urls as path(r'', home, name='home'),
 from django.shortcuts import render, redirect
-
 from django.core.files.storage import FileSystemStorage
 from .models import adv, Document
 from .forms import DocumentForm
@@ -45,28 +44,28 @@ def home(request):
 
             return redirect("index.html")
 
-    #   Noch ohne Post – Nur Form anzeigen
+    #   Without Post - show only form
     else:
         form = DocumentForm()
 
         context = {
             'form': form,
             'sessionkey': sessionkey
-        }  # Variablen, die in index.html gerendert wird
+        }
 
     return render(request, "index.html", context)
 
 
-# dieser view greift zurück auf urls.py
-# definiert in ../urls als url(r'^adv/', include('adv.urls'), name='adv')
-# benötigt adv/urls.py
+# this view invokes urls.py
+# defined in ../urls als url(r'^adv/', include('adv.urls'), name='adv')
+# requires adv/urls.py
 
-# Übersichtsseite alle Objekte (10) übergeben
+# Overview of all (10) objects
 def index(request):
-    advs = adv.objects.all()[:10]  # [:10] wie viele übernommen werden sollen
+    advs = adv.objects.all()[:10]  # [:10] how man will be shown
     context = {
         'advs': advs
-    }  # Variablen, die in index.html gerendert wird
+    }
 
     return render(request, "adv/index.html", context)
 
@@ -77,7 +76,7 @@ def details(request, id):
 
     context = {
         'adva': adva
-    }  # Variablen, die in details.html gerendert wird
+    }
 
     return render(request, "adv/details.html", context)
 
