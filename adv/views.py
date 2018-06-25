@@ -4,9 +4,7 @@
 # dieser view greift zurück auf templates/home.html
 # definiert in ../urls definiert als path(r'', home, name='home'),
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
 
-from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from .models import adv, Document
 from .forms import DocumentForm
